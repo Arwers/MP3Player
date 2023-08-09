@@ -1,7 +1,6 @@
 from pygame import mixer
 import tkinter as tk
 import os
-import time
 
 
 class Player:
@@ -52,19 +51,38 @@ class Player:
         ...
 
 
-class Window:
-    ...
+class Application(tk.Tk):
+    def __init__(self, path):
+        player = Player(path)
+        tk.Tk.__init__(self)
+        self.title("Music player")
+
+        #buttons
+        play = tk.Button( 
+            self, 
+            text = "play",
+            command = player.play
+            )
+        play.pack()
+
+        pause = tk.Button( 
+            self, 
+            text = "pause",
+            command = player.pause
+            )
+        pause.pack()
+        
+        unpause = tk.Button( 
+            self, 
+            text = "unpause",
+            command = player.unpause
+            )
+        unpause.pack()        
+
 
 def main():
-    player = Player("C:\MyFiles\Projects\Python\project\playlist1")
-    player.print_playlist()
-    player.play()
-    time.sleep(2)
-    player.pause()
-    time.sleep(2)
-    print(player)
-    root = tk.Tk()
-    root.mainloop()
+    app = Application("C:\MyFiles\Projects\Python\project\playlist1")
+    app.mainloop()
 
 
 if __name__ == "__main__":

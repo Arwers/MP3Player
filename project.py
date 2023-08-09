@@ -4,20 +4,23 @@ import os
 
 
 class Player:
-    def __init__(self, playlist):
+    def __init__(self, path):
         try:
-            self.playlist = playlist
-            # TODO: add file format filter
-            self.all_tracks = os.listdir(playlist)
+            all_files = os.listdir(path)
         except ValueError:
             exit("Failed to load playlist.")
 
+        self.path = path
+        self.playlist = [s for s in all_files if s.endswith((".mp3", ".wav"))]
+        if not self.playlist:
+            exit("Provided playlist is empty.")
+
     def __str__(self):
-        return f"Object representation of playlist in {self.playlist} location."
+        return f"Object representation of playlist in {self.path} location."
 
     def print_playlist(self):
         print("Player with loaded playlist: ")
-        for i, song in enumerate(self.all_tracks):
+        for i, song in enumerate(self.playlist):
             print(f"{i+1}. {song}")
     
     def play(self, song):

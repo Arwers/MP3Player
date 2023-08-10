@@ -2,7 +2,7 @@ import interface
 
 
 def main():
-    path = input("Path to tle playlist: ").strip()
+    path = input("Path to the playlist: ").strip()
     app = interface.Application(path)
     app.mainloop()
 

@@ -1,6 +1,7 @@
 from pygame import mixer
 import os
 
+
 class Player:
     """
     A class representation for a music player.
@@ -20,7 +21,7 @@ class Player:
         True: loaded (play() ---> start a new song)
         False: not loaded (play() ---> pause/unpause song)
         Changes how play() works.
-        
+
     Methods:
     --------
     print_playlist()
@@ -35,7 +36,8 @@ class Player:
         Turn volume up by 0.1 (max is 1.0).
     volume_down()
         Turn volume down by 0.1 (min is 0).
-    """    
+    """
+
     def __init__(self, path: str):
         """
         Constructs all necessary attributes for the player object.
@@ -45,23 +47,27 @@ class Player:
         path: str
             Path to the playlist.
         """
-        # get list of all files in folder
+        # Get list of all files in folder
         try:
             all_files = os.listdir(path)
         except ValueError:
             exit("Failed to load playlist.")
 
-        # filter out wrong file types
+        # Filter out wrong file types
         self.playlist = [s for s in all_files if s.endswith((".mp3", ".wav"))]
         if not self.playlist:
             exit("Provided playlist is empty.")
-        
+
+        # Set up rest of the attributes
         self.path = path
         self.size = len(self.playlist)
         self.position = 0
         self.state = False
 
+        # Make mixer object
         mixer.init()
+
+        # Set the volume to 0.5 (50%)
         mixer.music.set_volume(0.5)
 
     def __str__(self):
@@ -73,7 +79,7 @@ class Player:
         print("Player with loaded playlist: ")
         for i, song in enumerate(self.playlist):
             print(f"{i+1}. {song}")
-    
+
     def play(self):
         """Pause/unpause current song."""
         if mixer.music.get_busy():
@@ -92,6 +98,7 @@ class Player:
         """Play previous song. If song is first, play last one in playlist."""
         mixer.music.stop()
         self.state = False
+
         if not self.position:
             self.position = self.size - 1
         else:
@@ -103,6 +110,7 @@ class Player:
         """Play next song. If song is last, play first one in playlist."""
         mixer.music.stop()
         self.state = False
+
         if self.position == self.size - 1:
             self.position = 0
         else:
@@ -118,4 +126,8 @@ class Player:
     def volume_down(self):
         """Turn volume down by 0.1 (min is 0)."""
         temp = mixer.music.get_volume()
-        mixer.music.set_volume(temp - 0.1)
+        if temp < 0.1:
+            mixer.music.set_volume(0)
+        else:
+            mixer.music.set_volume(temp - 0.1)
+

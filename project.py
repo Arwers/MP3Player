@@ -1,5 +1,6 @@
 from pygame import mixer
 import tkinter as tk
+from tkinter import ttk
 import os
 
 
@@ -19,6 +20,7 @@ class Player:
         self.path = path
         self.size = len(self.playlist)
         self.position = 0
+        self.state = 0
         mixer.init()
 
     def __str__(self):
@@ -30,54 +32,79 @@ class Player:
             print(f"{i+1}. {song}")
     
     def play(self):
-        try:
-            mixer.music.load(f"{self.path}\{self.playlist[self.position]}")
-            mixer.music.play()
-        except RuntimeError:
-            exit("Failed to load and play track.")
-
-    def pause(self):
-        if mixer.music.get_busy:
+        if mixer.music.get_busy():
             mixer.music.pause()
+        elif not self.state:
+            try:
+                mixer.music.load(f"{self.path}\{self.playlist[self.position]}")
+                self.state = 1
+                mixer.music.play()
+            except RuntimeError:
+                exit("Failed to load and play track.")
+        else:
+            mixer.music.unpause()
 
-    def unpause(self):
-        mixer.music.unpause()
-
-    def volume(self):
-        ...
     def prev(self):
-        ...
-    def skip(self):
-        ...
+        mixer.music.stop()
+        self.state = 0
+        if self.position:
+            self.position = self.size - 1
+            self.play()
+        else:
+            self.position -= 1
+
+    def next(self):
+        mixer.music.stop()
+        self.state = 0
+        if self.position == self.size - 1:
+            self.position = 0
+            self.play()
+        else:
+            self.position += 1
 
 
 class Application(tk.Tk):
     def __init__(self, path):
         player = Player(path)
+        
+        # standard setup
         tk.Tk.__init__(self)
         self.title("Music player")
+        self.geometry("500x200")
+        self.configure(bg='#3A3A3A')
 
-        #buttons
+        # buttons
         play = tk.Button( 
             self, 
-            text = "play",
-            command = player.play
+            text = "⏯️",
+            command = player.play,
+            font = (None, 20),
+            bg = "#656565",
+            activebackground='#747474',
             )
-        play.pack()
-
-        pause = tk.Button( 
-            self, 
-            text = "pause",
-            command = player.pause
-            )
-        pause.pack()
         
-        unpause = tk.Button( 
+        next = tk.Button( 
             self, 
-            text = "unpause",
-            command = player.unpause
+            text = "⏭️",
+            command = player.next,
+            font=(None, 20),
+            bg = "#656565",
+            activebackground='#747474',
+            )   
+
+        prev = tk.Button( 
+            self, 
+            text = "⏮️",
+            command = player.prev,
+            font = (None, 20),
+            bg = "#656565",
+            activebackground='#747474',
             )
-        unpause.pack()        
+        
+        # pack the buttons
+        prev.pack()
+        play.pack()
+        next.pack()
 
 
 def main():

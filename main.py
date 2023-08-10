@@ -2,8 +2,8 @@ import interface
 
 
 def main():
-    # TODO: get playlist path
-    app = interface.Application("C:\MyFiles\Projects\Python\project\playlist1")
+    path = input("Path to tle playlist: ").strip()
+    app = interface.Application(path)
     app.mainloop()
 
 

@@ -20,6 +20,7 @@ class Player:
         self.state = 0
 
         mixer.init()
+        mixer.music.set_volume(0.5)
 
     def __str__(self):
         return f"Object representation of playlist in {self.path} location."
@@ -61,3 +62,11 @@ class Player:
             self.position += 1
 
         self.play()
+
+    def volume_up(self):
+        temp = mixer.music.get_volume()
+        mixer.music.set_volume(temp + 0.1)
+
+    def volume_down(self):
+        temp = mixer.music.get_volume()
+        mixer.music.set_volume(temp - 0.1)

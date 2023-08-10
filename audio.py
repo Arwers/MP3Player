@@ -45,7 +45,7 @@ class Player:
     def prev(self):
         mixer.music.stop()
         self.state = 0
-        if self.position:
+        if not self.position:
             self.position = self.size - 1
         else:
             self.position -= 1

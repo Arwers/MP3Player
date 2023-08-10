@@ -3,6 +3,7 @@ from tkinter import ttk
 import audio
 
 class Application(tk.Tk):
+    """GUI for player class."""
     def __init__(self, path):
         self.player = audio.Player(path)
         

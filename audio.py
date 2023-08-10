@@ -39,7 +39,8 @@ class Player:
     def __init__(self, path: str):
         """
         Constructs all necessary attributes for the player object.
-        Parameters
+
+        Parameters:
         ----------
         path: str
             Path to the playlist.
@@ -64,23 +65,17 @@ class Player:
         mixer.music.set_volume(0.5)
 
     def __str__(self):
-        """
-        Prints info about object.
-        """
+        """Prints info about object."""
         return f"Object representation of playlist in {self.path} location."
 
     def print_playlist(self):
-        """
-        Print all songs in playlist.
-        """
+        """Print all songs in playlist."""
         print("Player with loaded playlist: ")
         for i, song in enumerate(self.playlist):
             print(f"{i+1}. {song}")
     
     def play(self):
-        """
-        Pause/unpause current song.
-        """
+        """Pause/unpause current song."""
         if mixer.music.get_busy():
             mixer.music.pause()
         elif not self.state:
@@ -94,9 +89,7 @@ class Player:
             mixer.music.unpause()
 
     def prev(self):
-        """
-        Play previous song. If song is first, play last one in playlist.
-        """
+        """Play previous song. If song is first, play last one in playlist."""
         mixer.music.stop()
         self.state = False
         if not self.position:
@@ -107,9 +100,7 @@ class Player:
         self.play()
 
     def next(self):
-        """
-        Play next song. If song is last, play first one in playlist.
-        """
+        """Play next song. If song is last, play first one in playlist."""
         mixer.music.stop()
         self.state = False
         if self.position == self.size - 1:
@@ -120,15 +111,11 @@ class Player:
         self.play()
 
     def volume_up(self):
-        """
-        Turn volume up by 0.1 (max is 1.0).
-        """
+        """Turn volume up by 0.1 (max is 1.0)."""
         temp = mixer.music.get_volume()
         mixer.music.set_volume(temp + 0.1)
 
     def volume_down(self):
-        """
-        Turn volume down by 0.1 (min is 0).
-        """
+        """Turn volume down by 0.1 (min is 0)."""
         temp = mixer.music.get_volume()
         mixer.music.set_volume(temp - 0.1)

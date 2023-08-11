@@ -1,4 +1,4 @@
-import interface
+import interface as interface
 
 
 def main():

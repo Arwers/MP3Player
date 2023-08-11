@@ -50,7 +50,7 @@ class Player:
         # Get list of all files in folder
         try:
             all_files = os.listdir(path)
-        except ValueError:
+        except FileNotFoundError:
             exit("Failed to load playlist.")
 
         # Filter out wrong file types

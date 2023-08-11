@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
-import audio
+import audio as audio
 
 
 class Application(tk.Tk):

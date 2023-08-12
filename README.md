@@ -1,5 +1,4 @@
 # Music player
-#### Video Demo:  https://youtu.be/Fv9n0z_MJ9A
 #### Description: Basic music player.
 #### Required: tkinter and pygame
 Music player in which we can set up path to the playlist,\

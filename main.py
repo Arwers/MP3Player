@@ -4,9 +4,13 @@ import os
 
 def main():
     # setup
-    path = get_path()
-    theme = get_theme()
-    format = get_format()
+    path = get_path(input("Choose path: ").strip())
+
+    print("Avalible themes: dark/light/secret")
+    theme = get_theme(input("Choose Theme: ").strip())
+
+    print("Avalible formats: .wav/.mp3/both")
+    format = get_format(input("Choose format: ").strip())
 
     # launch
     app = interface.Application(path, theme, format)
@@ -14,7 +18,7 @@ def main():
 
 
 # choose theme
-def get_theme():
+def get_theme(theme):
     themes = {
         "dark": {
             "button": "#411B5A",
@@ -38,29 +42,29 @@ def get_theme():
             "bg": "secret_bg.png",
         },
     }
-    print("options: dark/light/secret")
-    while True:
-        choice = input("Choose Background: ").strip()
-        if choice in themes:
-            return themes[choice]
+
+    if theme in themes:
+        return themes[theme]
+    else:
+        exit("Theme doesn't exist")
 
 
 # get path
-def get_path():
-    while True:
-        path = input("Path to the playlist: ").strip()
-        if os.path.isdir(path):
-            return path
+def get_path(path):
+    if os.path.isdir(path):
+        return path
+    else:
+        exit("Path doesn't exist")
 
 
-def get_format():
-    print("options: .mp3/.wav/all")
-    while True:
-        format = input("Choose format: ").strip()
-        if format in [".mp4", ".wav"]:
-            return format
-        elif format == "all":
-            return (".mp4", ".wav")
+
+def get_format(format):
+    if format in [".mp3", ".wav"]:
+        return format
+    elif format == "both":
+        return (".mp3", ".wav")
+    else:
+        exit("Format is not avalible")
 
 
 if __name__ == "__main__":

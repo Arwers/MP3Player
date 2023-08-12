@@ -17,7 +17,7 @@ def main():
     app.mainloop()
 
 
-# choose theme
+# check if theme is valid and give back dictionary
 def get_theme(theme):
     themes = {
         "dark": {
@@ -49,7 +49,7 @@ def get_theme(theme):
         exit("Theme doesn't exist")
 
 
-# get path
+# check if path exists
 def get_path(path):
     if os.path.isdir(path):
         return path
@@ -57,7 +57,7 @@ def get_path(path):
         exit("Path doesn't exist")
 
 
-
+# check if format is valid
 def get_format(format):
     if format in [".mp3", ".wav"]:
         return format

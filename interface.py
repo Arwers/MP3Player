@@ -21,7 +21,7 @@ class Application(tk.Tk):
         play previous song and change label.
     """
 
-    def __init__(self, path, theme, format):
+    def __init__(self, path, theme):
         """
         Constructs all necessary attributes for the application object.
 
@@ -31,7 +31,7 @@ class Application(tk.Tk):
             Path to the playlist.
         """
         # Make player object
-        self.player = audio.Player(path, format)
+        self.player = audio.Player(path)
 
         # Make Tk object
         tk.Tk.__init__(self)

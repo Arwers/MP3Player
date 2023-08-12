@@ -1,24 +1,19 @@
 import interface
 import os
-
+import random
 
 def main():
     # setup
-    path = get_path(input("Choose path: ").strip())
-
-    print("Avalible themes: dark/light/secret")
-    theme = get_theme(input("Choose Theme: ").strip())
-
-    print("Avalible formats: .wav/.mp3/both")
-    format = get_format(input("Choose format: ").strip())
+    path =input("Choose path: ")
+    theme = get_theme()
 
     # launch
-    app = interface.Application(path, theme, format)
+    app = interface.Application(path, theme)
     app.mainloop()
 
 
 # check if theme is valid and give back dictionary
-def get_theme(theme):
+def get_theme():
     themes = {
         "dark": {
             "button": "#411B5A",
@@ -28,43 +23,28 @@ def get_theme(theme):
             "bg": "dark_bg.png",
         },
         "light": {
-            "button": "#FFFFFF",
-            "button_on": "#DBDBDB",
-            "button_fg": "#0A0A0A",
-            "song_title": "#DBDBDB",
+            "button": "#BF99D8",
+            "button_on": "#8449AC",
+            "button_fg": "#FFFFFF",
+            "song_title": "#8449AC",
             "bg": "light_bg.png",
         },
         "secret": {
-            "button": "#FFFFFF",
-            "button_on": "#DBDBDB",
-            "button_fg": "#0A0A0A",
-            "song_title": "#DBDBDB",
+            "button": "#"+''.join([random.choice('ABCDEF0123456789') for i in range(6)]),
+            "button_on": "#"+''.join([random.choice('ABCDEF0123456789') for i in range(6)]),
+            "button_fg": "#"+''.join([random.choice('ABCDEF0123456789') for i in range(6)]),
+            "song_title": "#"+''.join([random.choice('ABCDEF0123456789') for i in range(6)]),
             "bg": "secret_bg.png",
         },
     }
 
-    if theme in themes:
-        return themes[theme]
-    else:
-        exit("Theme doesn't exist")
-
-
-# check if path exists
-def get_path(path):
-    if os.path.isdir(path):
-        return path
-    else:
-        exit("Path doesn't exist")
-
-
-# check if format is valid
-def get_format(format):
-    if format in [".mp3", ".wav"]:
-        return format
-    elif format == "both":
-        return (".mp3", ".wav")
-    else:
-        exit("Format is not avalible")
+    print("Avalible themes: dark/light/secret")
+    while True:
+        theme = input("Choose theme: ")
+        if theme in themes:
+            return themes[theme]
+        else:
+            print("Theme doesn't exist. Try again.")
 
 
 if __name__ == "__main__":

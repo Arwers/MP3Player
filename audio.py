@@ -38,7 +38,7 @@ class Player:
         Turn volume down by 0.1 (min is 0).
     """
 
-    def __init__(self, path, format):
+    def __init__(self, path):
         """
         Constructs all necessary attributes for the player object.
 
@@ -54,7 +54,7 @@ class Player:
             exit("Failed to load playlist.")
 
         # Filter out wrong file types
-        self.playlist = [s for s in all_files if s.endswith((format))]
+        self.playlist = [s for s in all_files if s.endswith(((".mp3", ".wav")))]
         if not self.playlist:
             exit("Provided playlist is empty.")
 

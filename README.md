@@ -1,6 +1,6 @@
 # Music player
-#### Description: Basic music player.
 #### Required: tkinter and pygame
+#### Description:
 Music player in which we can set up path to the playlist,\
 choose one of three themes - dark, light and secret\
 and choose file format/formats.

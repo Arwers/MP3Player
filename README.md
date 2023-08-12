@@ -15,16 +15,9 @@ go for the next/previous one or change the volume.
     Main file used to setup app before opening window.
     Methods:
     --------
-    get_path(path)
-        check if the path is valid. If so, returns it.
-
-    get_theme(theme)
-        check if the theme is avalible. If so, returns dictionary\
+    get_theme()
+        Asks for theme. checks if the theme is avalible. If so, returns dictionary\
         with instructions for specific theme.
-
-    get_format(format)
-        check if format is correct. If so, returns format or \
-        tuple with formats.
 #### audio file
 ##### Player class
     A class representation for a music player.

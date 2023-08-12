@@ -17,10 +17,10 @@ def main():
 def get_theme():
     themes = {
         "dark": {
-            "button": "#0A0A0A",
-            "button_on": "#1C1C1C",
+            "button": "#411B5A",
+            "button_on": "#1F0D2B",
             "button_fg": "#FFFFFF",
-            "song_title": "#1C1C1C",
+            "song_title": "#1F0D2B",
             "bg": "dark_bg.png",
         },
         "light": {
@@ -54,7 +54,7 @@ def get_path():
 
 
 def get_format():
-    print("options: .mp4/.wav/all")
+    print("options: .mp3/.wav/all")
     while True:
         format = input("Choose format: ").strip()
         if format in [".mp4", ".wav"]:

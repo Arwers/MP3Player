@@ -49,7 +49,7 @@ class Application(tk.Tk):
         self.maxsize(500, 200)
 
         # set background
-        bg = tk.PhotoImage(file="resources/bg.png")
+        bg = tk.PhotoImage(file=f"resources/{theme['bg']}")
         bg_label = tk.Label(
             self,
             image=bg,
@@ -68,8 +68,9 @@ class Application(tk.Tk):
             text="⏯️",
             command=self.play_button,
             font=(None, 20),
-            bg="#FFFFFF",
-            activebackground="#FFFFFF",
+            bg=theme["button"],
+            activebackground=theme["button_on"],
+            fg=theme["button_fg"],
         )
 
         next_button = tk.Button(
@@ -77,8 +78,9 @@ class Application(tk.Tk):
             text="⏭️",
             command=self.next_button,
             font=(None, 20),
-            bg="#FFFFFF",
-            activebackground="#FFFFFF",
+            bg=theme["button"],
+            activebackground=theme["button_on"],
+            fg=theme["button_fg"],
         )
 
         prev_button = tk.Button(
@@ -86,8 +88,9 @@ class Application(tk.Tk):
             text="⏮️",
             command=self.prev_button,
             font=(None, 20),
-            bg="#FFFFFF",
-            activebackground="#FFFFFF",
+            bg=theme["button"],
+            activebackground=theme["button_on"],
+            fg=theme["button_fg"],
         )
 
         up_button = tk.Button(
@@ -95,8 +98,9 @@ class Application(tk.Tk):
             text="🔼",
             command=self.player.volume_up,
             font=(None, 20),
-            bg="#FFFFFF",
-            activebackground="#FFFFFF",
+            bg=theme["button"],
+            activebackground=theme["button_on"],
+            fg=theme["button_fg"],
         )
 
         down_button = tk.Button(
@@ -104,16 +108,19 @@ class Application(tk.Tk):
             text="🔽",
             command=self.player.volume_down,
             font=(None, 20),
-            bg="#FFFFFF",
-            activebackground="#FFFFFF",
+            bg=theme["button"],
+            activebackground=theme["button_on"],
+            fg=theme["button_fg"],
         )
 
         # setup label
         self.song_title = tk.Label(
             text=self.player.playlist[self.player.position],
-            bg="#F1D9FC",
+            bg=theme["song_title"],
+            fg=theme["button_fg"],
             font=(None, 10),
             width=37,
+            
         )
 
         # Set buttons on the grid

@@ -54,7 +54,7 @@ class Player:
             exit("Failed to load playlist.")
 
         # Filter out wrong file types
-        self.playlist = [s for s in all_files if s.endswith((".mp3", ".wav"))]
+        self.playlist = [s for s in all_files if s.endswith((format))]
         if not self.playlist:
             exit("Provided playlist is empty.")
 

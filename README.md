@@ -9,9 +9,11 @@ and choose file format/formats.
 After set up, window pops up. Now we can use five buttons to\
 navigate throught playlist. We can play/pause/unpause songs,\
 go for the next/previous one or change the volume.
-<p align="center" size="2">
-![themes](https://github.com/Arwers/Music-player/assets/52626118/bf65c2e1-190b-4657-95c8-e17be80ee96d)
+
+<p align="center">
+  <img src="http://some_place.com/image.png](https://github.com/Arwers/Music-player/assets/52626118/bf65c2e1-190b-4657-95c8-e17be80ee96d" />
 </p>
+
 #### project file
     Main file used to setup app before opening window.
     Methods:

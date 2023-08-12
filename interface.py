@@ -1,6 +1,5 @@
 import tkinter as tk
-from tkinter import ttk
-import audio as audio
+import audio
 
 
 class Application(tk.Tk):
@@ -11,9 +10,18 @@ class Application(tk.Tk):
     -----------
     player: Player
         Player object.
+
+    Methods:
+    --------
+    play_button()
+        play the song.
+    next_button()
+        play next song and change label.
+    prev_button()
+        play previous song and change label.
     """
 
-    def __init__(self, path):
+    def __init__(self, path, theme, format):
         """
         Constructs all necessary attributes for the application object.
 
@@ -23,7 +31,7 @@ class Application(tk.Tk):
             Path to the playlist.
         """
         # Make player object
-        self.player = audio.Player(path)
+        self.player = audio.Player(path, format)
 
         # Make Tk object
         tk.Tk.__init__(self)

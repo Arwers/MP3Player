@@ -11,7 +11,7 @@ class Player:
     path: str
         Path to the playlist
     playlist: list
-        List of all files in .wav and .mp3 format from provided path.
+        List of all files in .wav and/or .mp3 format from provided path.
     size: int
         Size of playlist (how many songs)
     position: int
@@ -38,7 +38,7 @@ class Player:
         Turn volume down by 0.1 (min is 0).
     """
 
-    def __init__(self, path: str):
+    def __init__(self, path, format):
         """
         Constructs all necessary attributes for the player object.
 
